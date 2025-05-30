@@ -83,8 +83,8 @@ class RFPParser:
         try:
             self.nlp = spacy.load("en_core_web_sm")
         except OSError:
-            download("en_core_web_sm")
-            self.nlp = spacy.load("en_core_web_sm")
+            logging.error(f"Failed to load en_core_web_sm: {e}")
+            raise OSError("Ensure en_core_web_sm is installed via requirements.txt")
 
         self.common_patterns = [
             r"Scope\s+of\s+Work",
